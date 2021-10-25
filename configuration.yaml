@@ -1,0 +1,33 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+ssdp: false
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+logger:
+  default: warning
+  logs:
+    homeassistant.components.homekit: debug
+
+cover:
+  - platform: mqtt
+    device_class: garage
+    name: "Garage door"
+    command_topic: "cover/garage_door"
+    state_topic: "sensor/garage_door"
+    qos: 0
+    retain: false
+    payload_open: "OPEN"
+    payload_close: "CLOSE"
+    payload_stop: "STOP"
+    state_open: "open"
+    state_opening: "opening"
+    state_closed: "closed"
+    state_closing: "closing"
+    optimistic: false

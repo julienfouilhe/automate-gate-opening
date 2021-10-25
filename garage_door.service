@@ -1,0 +1,16 @@
+[Unit]
+Description=Garage door worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/pi/
+User=pi
+Type=idle
+Restart=always
+ExecStart=/usr/bin/python3 /home/pi/garage_door.py
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
+

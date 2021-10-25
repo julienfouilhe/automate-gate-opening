@@ -1,8 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+
+print('Starting to listen to MQTT')
 
 from RPi import GPIO
 import time
 import paho.mqtt.client as mqtt
+print('Imported library mqtt')
 from signal import signal, SIGINT
 from sys import exit
 
@@ -17,14 +20,18 @@ failed_connection = False
 
 client = mqtt.Client("seedbox")
 
+print('Everything is setup')
+
 def cleanup():
+  print('Exiting gracefully')
   client.loop_stop()
   client.disconnect()
+  is_connected = False
   GPIO.cleanup()
 
 def sigintHandler(signal_received, frame):
     # Handle any cleanup here
-    print('SIGINT or CTRL-C detected. Exiting gracefully')
+    print('SIGINT or CTRL-C detected.')
     cleanup()
     exit(0)
 
@@ -59,7 +66,8 @@ def sendCode():
   pulse(348, 10004)
 
 def openGate():
-  for _ in range(0, 20):
+  print('Opening gate')
+  for _ in range(0, 40):
     sendCode()
   client.publish("sensor/garage_door", "closed")
   client.publish("sensor/garage_door", "opening")
@@ -70,10 +78,9 @@ def openGate():
   time.sleep(10)
   client.publish("sensor/garage_door", "closed")
 
-
 def on_message(client, userdata, message):
   payload = str(message.payload.decode("utf-8"))
-  print("message received " , payload)
+  print("message received", payload)
   print("message topic=", message.topic)
   if payload == "OPEN":
     openGate()
@@ -83,6 +90,7 @@ def on_connect(client, userdata, flags, rc):
     is_connected = True
     print("Connected to MQTT")
   else:
+    print("Failed to connect")
     failed_connection = True
 
 client.on_connect = on_connect
