@@ -21,7 +21,7 @@ Here's a graph of my setup, you can have something simpler, but I already had a 
 My setup requires the Raspberry PI to be connected to your local network (not necessarily to the internet though).  
 You can use an Arduino but you'll need to adapt the Python script that sends the signal.
 
-![Graph](./readme_assets/graph.jpeg)
+![Graph](./readme_assets/archi_graph.jpeg)
 
 ⚠️ I don't know how legal/illegal this is. I think it's ok if you're doing this for your own garage though but this is not legal advice. 😅
 
