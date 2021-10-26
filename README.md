@@ -133,9 +133,9 @@ At this point you should see the Garage door device appear on the Home app.
 
 It's time to make sure your Pi can receive OPEN orders from Homeassistant.
 
-- Uncomment stuff related to mqtt if you commented them.
+- In the python script, uncomment stuff related to mqtt if you commented them.
 - Set your machine IP in the script.
-- Launch the script and don't quit it
+- Launch the script and don't quit it (`python3 ./garage_door.py`)
 
 🎉 You should be able to open your garage using the Home app!
 
