@@ -49,26 +49,26 @@ My garage opens then closes automatically. If you have another button to close i
 - When I did that, multiple things appeared in the console. One thing kept reappearing though and that's how I knew it was my code. The library said it was recognizing a OOK code using Manchester coding and it gave me how many pulses it was sending. I understood a pulse as the duration of a **HIGH** signal combined with the duration of the following **LOW** signal, but I could be mistaken.
 
 ```log
-Detected OOK package	2021-10-24 05:01:08
+Detected OOK package  2021-10-24 05:01:08
 Analyzing pulses...
-Total count:   13,  width: 13.85 ms		( 3463 S)
+Total count:   13,  width: 13.85 ms    ( 3463 S)
 Pulse width distribution:
- [ 0] count:    8,  width:  368 us [360;424]	(  92 S)
- [ 1] count:    5,  width:  740 us [740;748]	( 185 S)
+ [ 0] count:    8,  width:  368 us [360;424]  (  92 S)
+ [ 1] count:    5,  width:  740 us [740;748]  ( 185 S)
 Gap width distribution:
- [ 0] count:    5,  width:  372 us [368;380]	(  93 S)
- [ 1] count:    7,  width:  756 us [756;764]	( 189 S)
+ [ 0] count:    5,  width:  372 us [368;380]  (  93 S)
+ [ 1] count:    7,  width:  756 us [756;764]  ( 189 S)
 Pulse period distribution:
- [ 0] count:    3,  width:  756 us [740;792]	( 189 S)
- [ 1] count:    3,  width: 1500 us [1496;1504]	( 375 S)
- [ 2] count:    6,  width: 1116 us [1116;1124]	( 279 S)
+ [ 0] count:    3,  width:  756 us [740;792]  ( 189 S)
+ [ 1] count:    3,  width: 1500 us [1496;1504]  ( 375 S)
+ [ 2] count:    6,  width: 1116 us [1116;1124]  ( 279 S)
 Pulse timing distribution:
- [ 0] count:   13,  width:  372 us [360;424]	(  93 S)
- [ 1] count:   12,  width:  748 us [740;764]	( 187 S)
- [ 2] count:    1,  width: 10004 us [10004;10004]	(2501 S)
+ [ 0] count:   13,  width:  372 us [360;424]  (  93 S)
+ [ 1] count:   12,  width:  748 us [740;764]  ( 187 S)
+ [ 2] count:    1,  width: 10004 us [10004;10004]  (2501 S)
 Level estimates [high, low]:  15599,    544
 RSSI: -0.2 dB SNR: 14.6 dB Noise: -14.8 dB
-Frequency offsets [F1, F2]:  -28455,      0	(-108.6 kHz, +0.0 kHz)
+Frequency offsets [F1, F2]:  -28455,      0  (-108.6 kHz, +0.0 kHz)
 Guessing modulation: Manchester coding
 view at https://triq.org/pdv/#AAB103017402EC27148091818091818090909181818255
 Attempting demodulation... short_width: 368, long_width: 0, reset_limit: 768, sync_width: 0
@@ -92,7 +92,7 @@ bitbuffer:: Number of rows: 1
 - If you won't use MQTT, remove everything related.
 - If you do, comment everything related for now because we will install it later.
 
-The script as is does not send the code when it's run. It waits for messages ordering it to 
+The script as is does not send the code when it's run. It waits for messages ordering it to open the garage door.
 At this point you can try to run the script and it should open your garage if you add this before the `start_loop`:
 
 ```python
@@ -125,6 +125,8 @@ The signal needs to be repeated a certain amount of times because your gate's re
 
 At this point you should see the Garage door device appear on the Home app.
 
+![Home app screenshot](./readme_assets/home_app.jpeg)
+
 ### Step 4: Connect the Raspberry Pi script to Home assistant
 
 It's time to make sure your Pi can receive OPEN orders from Homeassistant.
@@ -133,7 +135,7 @@ It's time to make sure your Pi can receive OPEN orders from Homeassistant.
 - Set your machine IP in the script.
 - Launch the script and don't quit it
 
-🎉 You should be able to open your garage using homekit!
+🎉 You should be able to open your garage using the Home app!
 
 ### Step 5: Keep everything running all the time
 
