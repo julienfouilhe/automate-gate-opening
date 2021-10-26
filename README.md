@@ -1,4 +1,4 @@
-# Automate your garage door / gate
+# Automate opening your garage door / gate
 
 ## Summary
 
