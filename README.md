@@ -6,8 +6,8 @@ This project sums up how I automated opening my garage door using a Raspberry PI
 
 ## Introduction
 
-I have an car and I use Apple Carplay.
-I wanted to automate the garage door of the building so that I could have the "Garage door" button on the screen in my car.
+I have a car and I use Apple Carplay.
+I wanted to automate my garage door so that I could have the "Garage door" button on the screen in my car. 😍
 
 ![Carplay with garage door open button](./readme_assets/car_play.jpeg)
 
