@@ -17,7 +17,7 @@ Note that my garage door uses a very simple system, and that my process may not 
 
 I did it. Took me some time to understand how to do just that, but hopefully this document will help people trying to achieve the same thing.
 
-Here's a graph of my setup, you can have something simpler, but I already had a home server (NUC) so I setup some things on that instead than on the Raspberry PI.  
+Here's a graph of my setup, you can have something simpler, but I already had a home server (NUC) so I setup some things on that instead of on the Raspberry PI.  
 My setup requires the Raspberry PI to be connected to your local network (not necessarily to the internet though).  
 You can use an Arduino but you'll need to adapt the Python script that sends the signal.
 
