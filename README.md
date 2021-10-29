@@ -31,7 +31,7 @@ You can use an Arduino but you'll need to adapt the Python script that sends the
 
 You'll need:
 
-- A garage door that can be opened by a 433Mhz remote. You need it the be a fixed code. I don't know how to check this, but rolling code will not work since we will be using the **replay attack** here.
+- A garage door that can be opened by a 433Mhz remote. You need it to be a fixed code. I don't know how to check this, but rolling code will not work since we will be using the **replay attack** here.
 - Female to female jumper cables (3)
 - A Raspberry Pi that you can plug not too far from your garage and connect to your home network (either via wifi or ethernet). I live on the 3rd floor directly above my garage door and had no problem with reception.
 - You'll need a **433Mhz emitter** that you can plug in to your RPi. I bought [this 3 pack](https://www.amazon.fr/gp/product/B086ZL8W1W) for about 10 euros but you can find it cheaper depending on where you live or how long you're ready to wait. You only need one.
