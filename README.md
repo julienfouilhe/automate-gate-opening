@@ -11,14 +11,16 @@ I wanted to automate my garage door so that I could have the "Garage door" butto
 
 ![Carplay with garage door open button](./readme_assets/car_play.jpeg)
 
-Obviously I couldn't change the hardware, I'm just a tenant, but the door could already be opened remotely, so I figured I could just copy the signal it was sending, and send it back.
+Obviously I couldn't mess with the garage electronics or change the hardware, I'm just a tenant, but the door could already be opened remotely, so I figured I could just copy the signal it was sending, and send it back.
+
+⚠️ If you are the owner of the garage door or you're allowed to mess with it, there are cheap and easy to install modules such as the [Meross Smart Wi-Fi Garage Opener](https://www.meross.com/Detail/29/Smart%20Wi-Fi%20Garage%20Door%20Opener)
 
 Note that my garage door uses a very simple system, and that my process may not work for your garage.
 
-I did it. Took me some time to understand how to do just that, but hopefully this document will help people trying to achieve the same thing.
+It took me some time to understand how to do just that, but hopefully this document will help people trying to achieve the same thing.
 
-Here's a graph of my setup, you can have something simpler, but I already had a home server (NUC) so I setup some things on that instead of on the Raspberry PI.  
-My setup requires the Raspberry PI to be connected to your local network (not necessarily to the internet though).  
+Here's a graph of my setup, you can have something simpler, but I already had a home server (NUC) so I setup some things on that instead of on the Raspberry Pi.  
+My setup requires the Raspberry Pi to be connected to your local network (not necessarily to the internet though).  
 You can use an Arduino but you'll need to adapt the Python script that sends the signal.
 
 ![Graph](./readme_assets/archi_graph.jpeg)
@@ -36,7 +38,7 @@ You'll need:
 - In order to sniff the signal, you'll need a **433Mhz receiver**. I first tried to use the receiver that's in the pack with the emitter, but the [program](https://github.com/milaq/rpi-rf) I used was trying to decipher some specific codes and could not decipher my OOK code. I think **maybe** you could try to tweak this library code to just get the raw signal, save it to a file and send that signal back without worrying too much, but I haven't tried it! Instead I bought a [RTL-SDR](https://www.amazon.fr/gp/product/B01GDN1T4S). A lot of very useful libraries are compatible with those devices. If you achieve sniffing the signal and sending it back without using an RTL-SDR but rather only using the cheap component, let me know or make a PR 🙏
 - I have a NUC that I used as a media server, and that now also hosts the Home Assistant server and the Mosquitto server. You can install those on the raspberry PI if you prefer. if you do you don't even need the Mosquitto server, you can directly call the Python script to send the code from Home Assistant.
 - A macOS or Linux device
-- For Homekit, you'll need an Apple TV, a HomePod or an iPad. Apple automatically sets those device as a Homekit bridge so you can do actions on your home devices even when your phone is not connected to the local network. I wouldn't recommend the iPad though, unless it's always home and connected to a power source.
+- For Homekit, you'll need an Apple TV, a HomePod or an iPad. Apple automatically sets those devices as a Homekit bridge so you can do actions on your home devices even when your phone is not connected to the local network. I wouldn't recommend the iPad though, unless it's always home and connected to a power source.
 
 ## Procedure
 
@@ -46,7 +48,7 @@ My garage opens then closes automatically. If you have another button to close i
 
 - Install the [rtl_433](https://github.com/merbanan/rtl_433) program.
 - Plug your RTL-SDR dongle on your computer. I didn't need an antenna to get the close signal of my remote.
-- Launch `rtl_433 -A`. The program should recognize your device and wait for signal. It could even be logging the different signals it gets if any. I had a `Toyota TPMS` signal that kept appearing. Do not pay attention.
+- Launch `rtl_433 -A`. The program should recognize your device and wait for a signal. It could even be logging the different signals it gets if any. I had a `Toyota TPMS` signal that kept appearing. Do not pay attention.
 - Push the button on your remote that opens your door several times.
 - When I did that, multiple things appeared in the console. One thing kept reappearing though and that's how I knew it was my code. The library said it was recognizing a OOK code using Manchester coding and it gave me how many pulses it was sending. I understood a pulse as the duration of a **HIGH** signal combined with the duration of the following **LOW** signal, but I could be mistaken.
 
